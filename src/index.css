@@ -1,0 +1,341 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Light mode - Fortumars vibrant theme */
+    --background: 30 25% 98%;
+    --foreground: 20 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 30% 15%;
+
+    --primary: 15 90% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 35 95% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 30 10% 90%;
+    --muted-foreground: 30 10% 45%;
+
+    --accent: 5 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 15% 85%;
+    --input: 30 15% 90%;
+    --ring: 15 90% 55%;
+
+    --radius: 1rem;
+
+    /* Gradient colors - Fortumars palette */
+    --gradient-purple: 280 75% 60%;
+    --gradient-blue: 200 85% 55%;
+    --gradient-cyan: 185 85% 50%;
+
+    /* Glassmorphism */
+    --glass-bg: 0 0% 100% / 0.6;
+    --glass-border: 0 0% 100% / 0.3;
+    --glass-blur: 20px;
+
+    /* Glow effects - Orange/Red theme */
+    --glow-primary: 15 90% 55%;
+    --glow-secondary: 35 95% 50%;
+    --glow-accent: 5 85% 60%;
+
+    --sidebar-background: 30 10% 98%;
+    --sidebar-foreground: 20 5.3% 26.1%;
+    --sidebar-primary: 15 90% 55%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 30 8% 95.9%;
+    --sidebar-accent-foreground: 20 5.9% 10%;
+    --sidebar-border: 30 13% 91%;
+    --sidebar-ring: 15 90% 55%;
+  }
+
+  .dark {
+    /* Dark mode - Fortumars dynamic theme */
+    --background: 20 35% 8%;
+    --foreground: 30 40% 98%;
+
+    --card: 20 30% 12%;
+    --card-foreground: 30 40% 98%;
+
+    --popover: 20 30% 12%;
+    --popover-foreground: 30 40% 98%;
+
+    --primary: 15 92% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 35 95% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 20 20% 18%;
+    --muted-foreground: 30 15% 65%;
+
+    --accent: 5 88% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 25% 22%;
+    --input: 20 25% 22%;
+    --ring: 15 92% 62%;
+
+    /* Gradient colors - Fortumars vibrant */
+    --gradient-purple: 280 80% 65%;
+    --gradient-blue: 200 90% 60%;
+    --gradient-cyan: 185 90% 55%;
+
+    /* Glassmorphism */
+    --glass-bg: 20 35% 15% / 0.6;
+    --glass-border: 20 35% 30% / 0.3;
+    --glass-blur: 20px;
+
+    /* Glow effects - Vibrant orange/red */
+    --glow-primary: 15 92% 62%;
+    --glow-secondary: 35 95% 55%;
+    --glow-accent: 5 88% 65%;
+
+    --sidebar-background: 20 35% 10%;
+    --sidebar-foreground: 30 40% 98%;
+    --sidebar-primary: 15 92% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 20% 18%;
+    --sidebar-accent-foreground: 30 40% 98%;
+    --sidebar-border: 20 25% 22%;
+    --sidebar-ring: 15 92% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+
+  /* Glassmorphism utilities */
+  .glass {
+    @apply backdrop-blur-xl bg-card/60 border border-border/30;
+  }
+
+  .glass-strong {
+    @apply backdrop-blur-2xl bg-card/80 border border-border/40;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  .gradient-text-reverse {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent via-secondary to-primary;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20;
+  }
+
+  .gradient-bg-solid {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  /* Glow effects */
+  .glow {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.3), 0 0 80px hsl(var(--secondary) / 0.2);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+  }
+
+  .glow-lg {
+    box-shadow: 0 0 60px hsl(var(--primary) / 0.4), 0 0 120px hsl(var(--secondary) / 0.3);
+  }
+
+  /* Text glow */
+  .text-glow {
+    text-shadow: 0 0 30px hsl(var(--primary) / 0.5);
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-2;
+    box-shadow: 0 25px 50px -12px hsl(var(--primary) / 0.25);
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Animated gradient border */
+  .animated-border {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--radius) + 2px);
+    background: linear-gradient(45deg,
+        hsl(var(--primary)),
+        hsl(var(--secondary)),
+        hsl(var(--accent)),
+        hsl(var(--primary)));
+    background-size: 300% 300%;
+    animation: gradient-rotate 4s ease infinite;
+    z-index: -1;
+    opacity: 0.7;
+  }
+
+  @keyframes gradient-rotate {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Floating animation */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-fast {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Pulse glow animation */
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.4), 0 0 40px hsl(var(--secondary) / 0.2);
+    }
+
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6), 0 0 80px hsl(var(--secondary) / 0.4);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg,
+        transparent,
+        hsl(var(--primary) / 0.1),
+        transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Particle animation */
+  @keyframes particle-float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(-100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
