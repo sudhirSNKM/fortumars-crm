@@ -5,36 +5,36 @@ import { Button } from "@/components/ui/button";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "VP of Sales",
-    company: "TechCorp Inc.",
-    avatar: "SJ",
+    name: "Priya Sharma",
+    role: "Operations Manager",
+    company: "TechVision Analytics",
+    avatar: "PS",
     rating: 5,
-    text: "Fortumars transformed our sales process completely. We've seen a 40% increase in conversion rates within the first quarter. The AI-powered insights are game-changing.",
+    text: "Honestly, I was skeptical at first. We'd tried 3 different CRMs before and none stuck. But Fortumars actually solved our lead tracking mess. The AI suggestions are surprisingly accurate - it caught patterns we completely missed.",
   },
   {
-    name: "Michael Chen",
-    role: "CEO",
-    company: "StartupXYZ",
-    avatar: "MC",
-    rating: 5,
-    text: "The automation workflows alone saved our team 20 hours per week. It's intuitive, powerful, and the support team is exceptional. Best decision we made this year.",
+    name: "Rajesh Kumar",
+    role: "Small Business Owner",
+    company: "Kumar Enterprises",
+    avatar: "RK",
+    rating: 4,
+    text: "Been using it for 6 months now. Setup took some time to figure out, but their support team was patient with all my questions. The automation has cut down our manual data entry by at least 60%. Worth the learning curve.",
   },
   {
-    name: "Emily Davis",
-    role: "Sales Director",
-    company: "Enterprise Solutions",
-    avatar: "ED",
+    name: "Anjali Verma",
+    role: "Sales Team Lead",
+    company: "Nexwave Solutions",
+    avatar: "AV",
     rating: 5,
-    text: "We evaluated 10 CRM platforms before choosing Fortumars. The dashboard analytics and real-time reporting give us insights we never had before.",
+    text: "What I appreciate most is how it doesn't overcomplicate things. We needed something our team would actually use, not another tool they'd ignore. The mobile app is solid - I can check everything on the go without issues.",
   },
   {
-    name: "James Wilson",
-    role: "Founder",
-    company: "Digital Agency Co.",
-    avatar: "JW",
-    rating: 5,
-    text: "From lead capture to closing deals, every step is streamlined. Our team adopted it within days, not weeks. The ROI was visible almost immediately.",
+    name: "David Martinez",
+    role: "Startup Founder",
+    company: "GrowthStack",
+    avatar: "DM",
+    rating: 4,
+    text: "The AI insights have been genuinely helpful for prioritizing leads. Not perfect, but way better than guessing. My only gripe is the reporting could be more customizable. Overall though, it's been a game changer for our small team.",
   },
 ];
 
@@ -211,8 +211,8 @@ export const TestimonialsSection = () => {
                       handleInteraction();
                     }}
                     className={`w-2.5 h-2.5 rounded-full transition-all ${index === currentIndex
-                        ? "bg-primary w-8"
-                        : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                      ? "bg-primary w-8"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
                       }`}
                   />
                 ))}
