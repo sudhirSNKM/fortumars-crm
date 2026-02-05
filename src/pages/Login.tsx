@@ -187,6 +187,9 @@ export default function Login() {
                         </div>
                     )}
 
+                    {/* Recaptcha Container - Must be always present */}
+                    <div id="recaptcha-container" className="justify-center flex mb-4"></div>
+
                     {/* Email Form */}
                     {authMethod === 'email' && (
                         <form onSubmit={handleEmailLogin} className="space-y-6">
@@ -249,7 +252,6 @@ export default function Login() {
                                         </div>
                                         <p className="text-xs text-muted-foreground mt-1">Format: +1234567890 (Country code required)</p>
                                     </div>
-                                    <div id="recaptcha-container"></div>
                                     <Button type="submit" disabled={loading} className="w-full py-6 text-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90">
                                         {loading ? 'Sending OTP...' : 'Send OTP'}
                                     </Button>
