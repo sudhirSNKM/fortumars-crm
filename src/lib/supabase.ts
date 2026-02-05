@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://gjthhdvxvccehgcbauab.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Use placeholder key if not set - this allows the landing page to work without auth setup
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key-for-landing-page';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
