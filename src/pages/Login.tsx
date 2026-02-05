@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import { Mail, Lock, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { supabase } from '@/lib/supabase';
+import { auth } from '@/lib/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -18,16 +19,8 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-            });
-
-            if (error) throw error;
-
-            if (data.user) {
-                navigate('/dashboard');
-            }
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate('/dashboard');
         } catch (err: any) {
             setError(err.message || 'Failed to login. Please check your credentials.');
         } finally {
@@ -128,9 +121,6 @@ export default function Login() {
                                     Sign up
                                 </Link>
                             </p>
-                            <Link to="/forgot-password" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                Forgot your password?
-                            </Link>
                         </div>
                     </form>
                 </div>

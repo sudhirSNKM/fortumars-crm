@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import { Mail, Lock, User, Building, Phone, Briefcase, Users, AlertCircle, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { supabase } from '@/lib/supabase';
-import type { UserRegistration } from '@/lib/supabase';
+import { auth, db } from '@/lib/firebase';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import type { UserRegistration } from '@/lib/firebase';
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -45,42 +47,28 @@ export default function Signup() {
 
         try {
             // 1. Create auth user
-            const { data: authData, error: authError } = await supabase.auth.signUp({
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+
+            // 2. Update user profile with display name
+            await updateProfile(userCredential.user, {
+                displayName: formData.full_name,
+            });
+
+            // 3. Store registration details in Firestore
+            await addDoc(collection(db, 'user_registrations'), {
+                userId: userCredential.user.uid,
                 email: formData.email,
-                password: formData.password,
+                full_name: formData.full_name,
+                company_name: formData.company_name,
+                phone_number: formData.phone_number,
+                role: formData.role || '',
+                industry: formData.industry || '',
+                team_size: formData.team_size || '',
+                created_at: serverTimestamp(),
             });
 
-            if (authError) throw authError;
-
-            // 2. Store registration details
-            const { error: dbError } = await supabase
-                .from('user_registrations')
-                .insert([
-                    {
-                        user_id: authData.user?.id,
-                        email: formData.email,
-                        full_name: formData.full_name,
-                        company_name: formData.company_name,
-                        phone_number: formData.phone_number,
-                        role: formData.role,
-                        industry: formData.industry,
-                        team_size: formData.team_size,
-                    },
-                ]);
-
-            if (dbError) throw dbError;
-
-            // 3. Send notification to admin (via Supabase Edge Function or webhook)
-            // You'll need to set this up in Supabase
-            await supabase.functions.invoke('notify-admin', {
-                body: {
-                    type: 'new_registration',
-                    user: formData,
-                },
-            }).catch(() => {
-                // Notification failed but registration succeeded
-                console.log('Admin notification failed');
-            });
+            // 4. TODO: Send notification to admin
+            // You can set up a Firebase Cloud Function to send SMS/email to admin
 
             setSuccess(true);
             setTimeout(() => {
