@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export const CTASection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -71,20 +72,24 @@ export const CTASection = () => {
             transition={{ delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all animate-pulse-glow group text-lg px-10 py-7"
-            >
-              Get Started Free
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="glass border-border/50 hover:bg-muted/50 text-lg px-10 py-7"
-            >
-              Schedule a Demo
-            </Button>
+            <Link to="/signup">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all animate-pulse-glow group text-lg px-10 py-7"
+              >
+                Get Started Free
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button
+                size="lg"
+                variant="outline"
+                className="glass border-border/50 hover:bg-muted/50 text-lg px-10 py-7"
+              >
+                Schedule a Demo
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Trust badges */}

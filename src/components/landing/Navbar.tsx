@@ -70,12 +70,16 @@ export const Navbar = () => {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4">
-              <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
-                Sign In
-              </Button>
-              <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-sm">
-                Get Started Free
-              </Button>
+              <Link to="/login">
+                <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-sm">
+                  Get Started Free
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -133,12 +137,16 @@ export const Navbar = () => {
                   transition={{ delay: 0.5 }}
                   className="flex flex-col gap-3 mt-6"
                 >
-                  <Button variant="outline" size="lg" className="w-full">
-                    Sign In
-                  </Button>
-                  <Button size="lg" className="w-full bg-gradient-to-r from-primary to-secondary">
-                    Get Started Free
-                  </Button>
+                  <Link to="/login" className="w-full">
+                    <Button variant="outline" size="lg" className="w-full">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to="/signup" className="w-full">
+                    <Button size="lg" className="w-full bg-gradient-to-r from-primary to-secondary">
+                      Get Started Free
+                    </Button>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>

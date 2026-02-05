@@ -67,8 +67,28 @@ export default function Signup() {
                 created_at: serverTimestamp(),
             });
 
-            // 4. TODO: Send notification to admin
-            // You can set up a Firebase Cloud Function to send SMS/email to admin
+            // 4. Send notification to admin
+            try {
+                // Fetch admin phone number
+                const { doc, getDoc } = await import('firebase/firestore');
+                const adminSettingsRef = doc(db, 'settings', 'admin');
+                const adminSettingsSnap = await getDoc(adminSettingsRef);
+
+                if (adminSettingsSnap.exists()) {
+                    const adminPhone = adminSettingsSnap.data().notificationPhone;
+                    if (adminPhone) {
+                        // Simulate sending SMS (Integration required with Twilio/SendGrid)
+                        console.log(`[SIMULATION] Sending new user notification to Admin (${adminPhone}):`);
+                        console.log(`New User: ${formData.full_name}, Company: ${formData.company_name}, Email: ${formData.email}`);
+
+                        // In a real app, you would call a Cloud Function here:
+                        // await httpsCallable(functions, 'sendAdminNotification')({ phone: adminPhone, userData: formData });
+                    }
+                }
+            } catch (notifyError) {
+                console.error("Failed to notify admin:", notifyError);
+                // Don't fail the registration if notification fails
+            }
 
             setSuccess(true);
             setTimeout(() => {
