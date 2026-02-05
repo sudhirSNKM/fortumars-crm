@@ -44,8 +44,8 @@ export const Footer = () => {
           <div className="col-span-2">
             <a href="#" className="flex items-center gap-2 group mb-4">
               <div className="relative">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-primary-foreground" />
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
+                  <img src="/favicon.ico" alt="Fortumars Logo" className="w-full h-full object-contain" />
                 </div>
               </div>
               <span className="font-display text-xl font-bold gradient-text">
